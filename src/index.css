@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Raleway Variable";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url(../fonts/raleway-latin-wght-normal.woff2) format("woff2");
+  }
+
+  html {
+    font-family: "Raleway Variable", system-ui, sans-serif;
+    @apply bg-zinc-50 text-zinc-950;
+  }
+}
