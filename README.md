@@ -15,6 +15,8 @@ Este proyecto permite lo siguiente:
 
 \*Únicamente se simula el guardado de la orden.
 
+URL del proyecto desplegado: [Visitar calculadora de propinas](https://tip-calculator-jgezziel.pages.dev/)
+
 ## Información tecnica
 
 Las tecnologias y herramientas usadas en el proyecto son las siguientes:
