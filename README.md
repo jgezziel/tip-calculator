@@ -22,7 +22,7 @@ URL del proyecto desplegado: [Visitar calculadora de propinas](https://tip-calcu
 Las tecnologias y herramientas usadas en el proyecto son las siguientes:
 
 - **React**
-  - useState
+  - useReducer
   - useMemo
 - **Typescript**
 - **Tailwind CSS**

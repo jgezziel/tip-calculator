@@ -1,13 +1,14 @@
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch } from "react";
 
 import { tipPercentages } from "../data/db";
+import type { OrderActions } from "../reducers/OrderReducer";
 
 type FormTipPercentageProps = {
-  setTip: Dispatch<SetStateAction<number>>;
+  dispatch: Dispatch<OrderActions>;
   tip: number;
 };
 
-const FormTipPercentage = ({ setTip, tip }: FormTipPercentageProps) => {
+const FormTipPercentage = ({ dispatch, tip }: FormTipPercentageProps) => {
   return (
     <div>
       <h2 className="pb-2 mb-6 text-2xl font-extrabold border-b border-dashed">
@@ -22,7 +23,9 @@ const FormTipPercentage = ({ setTip, tip }: FormTipPercentageProps) => {
             name="tip"
             id="tip"
             className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-amber-400 focus:border-amber-400"
-            onChange={(e) => setTip(Number(e.target.value))}
+            onChange={(e) =>
+              dispatch({ type: "SET_TIP", payload: { tip: +e.target.value } })
+            }
             value={tip}
           >
             {tipPercentages.map((tipPer) => (

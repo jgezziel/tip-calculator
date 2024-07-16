@@ -1,3 +1,4 @@
+import { useReducer } from "react";
 import { menuItems } from "./data/db";
 
 import MenuItem from "./components/MenuItem";
@@ -5,10 +6,11 @@ import OrderContents from "./components/OrderContents";
 import OrderTotals from "./components/OrderTotals";
 import FormTipPercentage from "./components/FormTipPercentage";
 
-import useOrder from "./hooks/useOrder";
+import { initialState, orderReducer } from "./reducers/OrderReducer";
 
 function App() {
-  const { order, tip, setTip, addItem, removeItem, placeOrder } = useOrder();
+  const [state, dispatch] = useReducer(orderReducer, initialState);
+
   return (
     <>
       <header className="py-6 bg-amber-400">
@@ -26,7 +28,7 @@ function App() {
           </h2>
           <div className="my-6 space-y-4">
             {menuItems.map((item) => (
-              <MenuItem key={item.id} item={item} addItem={addItem} />
+              <MenuItem key={item.id} item={item} dispatch={dispatch} />
             ))}
           </div>
         </div>
@@ -35,14 +37,18 @@ function App() {
             Consumo
           </h2>
           <div className="flex flex-col gap-6 justify-between h-[88%]">
-            {order.length ? (
+            {state.order.length ? (
               <>
-                <OrderContents order={order} removeItem={removeItem} />
-                <FormTipPercentage setTip={setTip} tip={tip} />
-                <OrderTotals order={order} tip={tip} placeOrder={placeOrder} />
+                <OrderContents order={state.order} dispatch={dispatch} />
+                <FormTipPercentage dispatch={dispatch} tip={state.tip} />
+                <OrderTotals
+                  order={state.order}
+                  tip={state.tip}
+                  dispatch={dispatch}
+                />
               </>
             ) : (
-              <p className="text-lg text-center text-gray-500 font-semibold">
+              <p className="text-lg font-semibold text-center text-gray-500">
                 Aún no has ordenado nada
               </p>
             )}
